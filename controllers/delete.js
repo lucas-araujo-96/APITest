@@ -1,5 +1,6 @@
 const User = require(`../models/user`);
 const bcrypt = require(`bcrypt`);
+const jwt = require(`jsonwebtoken`);
 
 module.exports = async (req, res) => {
 
@@ -12,6 +13,10 @@ module.exports = async (req, res) => {
     const validPassword = await bcrypt.compare(password, user.password);
 
     if (!validPassword) return res.send(`Password invalid`);
+
+    const token = req.headers.authorization.split(` `);
+    const payload = jwt.decode(token[1]);
+    if(payload.sub.toString() != user._id.toString()) return res.send(`You cannot delete this user`);
 
     await User.findOneAndDelete({ email });
 

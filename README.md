@@ -10,9 +10,11 @@ API com algumas rotas para praticar:
 
 /protected : Rota protegida pelo passport-jwt, checa o token de autenticação e retorna o email do usuário;
 
-/deleteUser : Recebe "email", "password" e o JWT, valida o usuário no BD e checa se o campo sub do token equivale ao usuário, caso tudo esteja positivo, deleta a conta do usuário do BD (em implementação);
+/deleteUser : Recebe "email", "password" e o JWT, valida o usuário no BD e checa se o campo sub do token equivale ao usuário, caso tudo esteja positivo, deleta a conta do usuário do BD;
 
-Feito com express e mongoDB (Atlas), pretendo implementar uma rota de recuperação de senha e uma de alteração de dados ainda.
+/update: Recebe "email", "password", "newEmail", "newPassword" e o JWT, valida o usuário e os dados e atualiza o cadstro no BD;
+
+Feito com express e mongoDB (Atlas), pretendo implementar uma rota de recuperação de senha ainda.
 
 IMPORTANTE: A assinatura e validação do JWT é feita com um par de chaves, use "node keygen.js" na pasta ./modules para gerá-las antes de iniciar a API (app.js em ./) e "npm install" na pasta raíz para montar a pasta node_modules;
 

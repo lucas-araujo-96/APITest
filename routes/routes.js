@@ -3,6 +3,7 @@ const register = require(`../controllers/register`);
 const login = require(`../controllers/login`);
 const deleteUser = require(`../controllers/delete`);
 const protected = require(`../controllers/protected`);
+const update = require(`../controllers/update`);
 const passport = require(`passport`);
 const jwt = require(`jsonwebtoken`);
 
@@ -17,9 +18,11 @@ router.post(`/register`, register);
 
 router.post(`/login`, login);
 
-router.post(`/deleteUser`, passport.authenticate(`jwt`, {session: false}), deleteUser);
+router.delete(`/deleteUser`, passport.authenticate(`jwt`, {session: false}), deleteUser);
 
 router.get(`/protected`, passport.authenticate('jwt', {session: false}), protected);
+
+router.put(`/update`, passport.authenticate('jwt', {session: false}), update);
 
 /*
 ** Exporta uma função que recebe a instância de servidor como argumento e o configura para usar o roteador
